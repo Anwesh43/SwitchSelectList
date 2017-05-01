@@ -9,13 +9,14 @@ import android.view.MotionEvent;
 public class Switch {
     private SwitchCircle switchCircle;
     private float x,y,w,h;
-
+    private SwitchTouchHandler switchTouchHandler;
     public void setDimensions(float x,float y,float w,float h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
         switchCircle = new SwitchCircle();
+        switchTouchHandler = new SwitchTouchHandler();
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -26,9 +27,10 @@ public class Switch {
     }
     public boolean handleTouch(MotionEvent event) {
         float x = event.getX() - this.x, y = event.getY() -this.y;
+        switchTouchHandler.handleTouch(event,x,y);
         return true;
     }
-    private class SwitchCircle {
+    public class SwitchCircle {
         private float cx,cy,r;
         public SwitchCircle() {
             this.cx = h/2;
@@ -53,6 +55,34 @@ public class Switch {
                 }
             }
         }
-
+        public void fill(float factor) {
+            cx = (w-r)*factor;
+        }
+        public boolean isFilled() {
+            return cx>=w-r;
+        }
+        public boolean isUnFilled() {
+            return cx<=r;
+        }
+    }
+    private OnTapHandler onTapHandler;
+    public void setOnTapHandler(OnTapHandler onTapHandler) {
+        this.onTapHandler = onTapHandler;
+    }
+    public interface OnTapHandler {
+        void onFill();
+        void onUnFill();
+    }
+    private class SwitchTouchHandler {
+        public void handleTouch(MotionEvent event,float x,float y) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && switchCircle.handleTouchDown(x,y) && onTapHandler!=null) {
+                if(switchCircle.isFilled()) {
+                    onTapHandler.onUnFill();
+                }
+                else if(switchCircle.isUnFilled()){
+                    onTapHandler.onFill();
+                }
+            }
+        }
     }
 }
