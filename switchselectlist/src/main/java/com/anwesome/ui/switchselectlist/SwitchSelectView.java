@@ -16,7 +16,7 @@ public class SwitchSelectView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler;
     private OnSelectionChangeListener onSelectionChangeListener;
-    public void onSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
         this.onSelectionChangeListener = onSelectionChangeListener;
     }
     public SwitchSelectView(Context context,String option) {
