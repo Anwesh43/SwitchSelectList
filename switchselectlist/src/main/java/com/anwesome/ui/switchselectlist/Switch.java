@@ -74,7 +74,7 @@ public class Switch {
             }
         }
         public void fill(float factor) {
-            cx = (w-r)*factor;
+            cx = (w)*factor;
         }
         public boolean isFilled() {
             return cx>=w-r;
