@@ -24,6 +24,14 @@ public class SwitchSelectView extends View {
         mSwitch.update(factor);
         postInvalidate();
     }
+    public void onSwitchAnimEnded() {
+        if(mSwitch.on()) {
+
+        }
+        else if(mSwitch.off()) {
+
+        }
+    }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth(),h = canvas.getHeight();
         if(time == 0) {

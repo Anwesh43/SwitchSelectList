@@ -21,6 +21,12 @@ public class Switch {
     public void update(float factor) {
         switchCircle.fill(factor);
     }
+    public boolean on() {
+        return switchCircle.isFilled();
+    }
+    public boolean off() {
+        return switchCircle.isUnFilled();
+    }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
