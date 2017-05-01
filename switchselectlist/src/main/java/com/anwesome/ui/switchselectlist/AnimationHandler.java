@@ -21,4 +21,10 @@ public class AnimationHandler implements ValueAnimator.AnimatorUpdateListener {
         float factor = (float)valueAnimator.getAnimatedValue();
         mSwitchView.update(factor);
     }
+    public void start() {
+        startAnim.start();
+    }
+    public void end() {
+        endAnim.start();
+    }
 }

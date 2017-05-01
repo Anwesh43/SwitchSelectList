@@ -28,6 +28,17 @@ public class SwitchSelectView extends View {
         int w = canvas.getWidth(),h = canvas.getHeight();
         if(time == 0) {
             mSwitch.setDimensions(7*w/10,h/6,w/5,w/12);
+            mSwitch.setOnTapHandler(new Switch.OnTapHandler() {
+                @Override
+                public void onFill() {
+                    animationHandler.start();
+                }
+
+                @Override
+                public void onUnFill() {
+                    animationHandler.end();
+                }
+            });
         }
         canvas.drawColor(Color.WHITE);
         mSwitch.draw(canvas,paint);
