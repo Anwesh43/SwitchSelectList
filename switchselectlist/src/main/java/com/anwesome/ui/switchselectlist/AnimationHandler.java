@@ -13,7 +13,12 @@ public class AnimationHandler implements ValueAnimator.AnimatorUpdateListener {
         endAnim.setDuration(500);
         endAnim.addUpdateListener(this);
     }}
+    private SwitchSelectView mSwitchView;
+    public AnimationHandler(SwitchSelectView mSwitchView) {
+        this.mSwitchView = mSwitchView;
+    }
     public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
+        float factor = (float)valueAnimator.getAnimatedValue();
+        mSwitchView.update(factor);
     }
 }

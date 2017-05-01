@@ -14,6 +14,10 @@ public class SwitchSelectView extends View {
     public SwitchSelectView(Context context,String option) {
         super(context);
         this.option = option;
+        animationHandler = new AnimationHandler(this);
     }
-
+    public void update(float factor) {
+        mSwitch.update(factor);
+        postInvalidate();
+    }
 }

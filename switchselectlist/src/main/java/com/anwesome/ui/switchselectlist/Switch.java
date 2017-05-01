@@ -18,6 +18,9 @@ public class Switch {
         switchCircle = new SwitchCircle();
         switchTouchHandler = new SwitchTouchHandler();
     }
+    public void update(float factor) {
+        switchCircle.fill(factor);
+    }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
