@@ -31,13 +31,16 @@ public class Switch {
         canvas.save();
         canvas.translate(x,y);
         paint.setColor(Color.parseColor("#BDBDBD"));
-        canvas.drawRoundRect(new RectF(0,0,w,h),w/10,w/10,paint);
-        switchCircle.draw(canvas,paint);
+        canvas.drawRoundRect(new RectF(0,0,w,h),w/5,w/5,paint);
+
         paint.setColor(Color.parseColor("#3D5AFE"));
+        canvas.save();
         Path path = new Path();
-        path.addRect(new RectF(-w/10,0,switchCircle.cx,h), Path.Direction.CCW);
+        path.addRect(new RectF(0,0,switchCircle.cx,h), Path.Direction.CCW);
         canvas.clipPath(path);
-        canvas.drawRoundRect(new RectF(0,0,w,h),w/10,w/10,paint);
+        canvas.drawRoundRect(new RectF(0,0,w,h),w/5,w/5,paint);
+        canvas.restore();
+        switchCircle.draw(canvas,paint);
         canvas.restore();
     }
     public boolean handleTouch(MotionEvent event) {
@@ -48,7 +51,7 @@ public class Switch {
     public class SwitchCircle {
         private float cx,cy,r;
         public SwitchCircle() {
-            this.cx = h/2;
+            this.cx = 0;
             this.cy = h/2;
             this.r = h/2+h/10;
         }

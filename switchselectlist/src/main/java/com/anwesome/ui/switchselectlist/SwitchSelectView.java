@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -60,5 +61,9 @@ public class SwitchSelectView extends View {
         paint.setColor(Color.parseColor("#BDBDBD"));
         canvas.drawText(option,w/6,h/4,paint);
         time++;
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+        mSwitch.handleTouch(event);
+        return true;
     }
 }
