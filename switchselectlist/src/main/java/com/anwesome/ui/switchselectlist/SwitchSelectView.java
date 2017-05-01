@@ -15,6 +15,10 @@ public class SwitchSelectView extends View {
     private Switch mSwitch = new Switch();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler;
+    private OnSelectionChangeListener onSelectionChangeListener;
+    public void onSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public SwitchSelectView(Context context,String option) {
         super(context);
         this.option = option;
@@ -25,11 +29,13 @@ public class SwitchSelectView extends View {
         postInvalidate();
     }
     public void onSwitchAnimEnded() {
-        if(mSwitch.on()) {
+        if(onSelectionChangeListener != null) {
+            if (mSwitch.on()) {
+                onSelectionChangeListener.onSelect();
 
-        }
-        else if(mSwitch.off()) {
-
+            } else if (mSwitch.off()) {
+                onSelectionChangeListener.onUnSelect();
+            }
         }
     }
     public void onDraw(Canvas canvas) {
